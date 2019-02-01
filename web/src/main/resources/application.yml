@@ -2,16 +2,24 @@
 server:
   port: 9090
   servlet:
-    context-path: /ty
+    context-path: /${spring.application.name}
 
 # logger 日志
 logging:
   level:
     com: DEBUG
+  config: classpath:config/logback.xml
+  path: /ty/logs/interface
 
 spring:
+  application:
+    name: ty
   profiles:
     active: product
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
     #druid datasource configuration
   datasource:
     druid:
