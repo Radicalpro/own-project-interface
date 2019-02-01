@@ -9,8 +9,10 @@ logging:
   level:
     com: DEBUG
 
-#druid datasource configuration
 spring:
+  profiles:
+    active: product
+    #druid datasource configuration
   datasource:
     druid:
       enable: true
@@ -42,6 +44,3 @@ spring:
           slow-sql-millis: 3000
           merge-sql: false
           log-slow-sql: true
-    url: jdbc:mysql://106.13.81.46:3306/application?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&tinyInt1isBit=false
-    username: root
-    password: ty1234
