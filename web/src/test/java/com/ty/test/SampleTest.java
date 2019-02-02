@@ -1,8 +1,8 @@
 package com.ty.test;
 
 import com.ty.PlatformApplication;
+import com.ty.test.entity.TestUser;
 import com.ty.test.mapper.TestUserMapper;
-import com.ty.test.model.TestUser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
