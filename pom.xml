@@ -4,12 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ty.interface</groupId>
-    <artifactId>com.ty.interface</artifactId>
+    <groupId>com.ty</groupId>
+    <artifactId>interface</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>web</module>
+        <module>service</module>
+        <module>manager</module>
+        <module>dao</module>
     </modules>
 
     <properties>
@@ -19,6 +22,7 @@
         <lombok.version>1.16.16</lombok.version>
         <mybatis-spring-boot.version>1.3.1</mybatis-spring-boot.version>
         <fastjson.version>1.2.43</fastjson.version>
+        <mybatisPlus.version>3.0.7.1</mybatisPlus.version>
     </properties>
 
     <parent>
@@ -85,6 +89,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatisPlus.version}</version>
         </dependency>
 
     </dependencies>
