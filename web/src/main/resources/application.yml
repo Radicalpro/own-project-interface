@@ -6,8 +6,6 @@ server:
 
 # logger 日志
 logging:
-  level:
-    com: DEBUG
   config: classpath:config/logback.xml
   path: /ty/logs/interface
 
@@ -19,9 +17,8 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
-
-    #druid datasource configuration
   datasource:
+    #druid datasource configuration
     druid:
       enable: true
       db-type: com.alibaba.druid.pool.DruidDataSource
@@ -52,3 +49,20 @@ spring:
           slow-sql-millis: 3000
           merge-sql: false
           log-slow-sql: true
+  jpa:
+    open-in-view: true
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+mybatis-plus:
+  # 支持统配符 * 或者 ; 分割
+  typeEnumsPackage: com.ty.commonenums
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)

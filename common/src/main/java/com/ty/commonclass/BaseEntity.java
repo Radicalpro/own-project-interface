@@ -1,4 +1,4 @@
-package com.ty.superclass;
+package com.ty.commonclass;
 
 /**
  * 公共Entity
