@@ -1,13 +1,15 @@
 package com.ty.test.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ty.test.model.TestUser;
+import com.ty.test.entity.TestUser;
 
 /**
- * test_user
+ * <p>
+ * 测试数据库 Mapper 接口
+ * </p>
  *
  * @author tianyi
- * @date 2019-02-02
+ * @since 2019-02-02
  */
 public interface TestUserMapper extends BaseMapper<TestUser> {
 

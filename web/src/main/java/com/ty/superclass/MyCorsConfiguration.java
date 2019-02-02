@@ -1,4 +1,4 @@
-package com.ty.common;
+package com.ty.superclass;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
