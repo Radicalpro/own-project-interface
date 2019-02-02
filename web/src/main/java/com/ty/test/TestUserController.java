@@ -1,9 +1,16 @@
 package com.ty.test;
 
 
-import com.ty.superclass.BaseController;
+import com.ty.commonclass.BaseController;
+import com.ty.commonclass.CommonResponse;
+import com.ty.test.entity.TestUser;
+import com.ty.test.service.ITestUserService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test/test-user")
 public class TestUserController extends BaseController {
+
+    @Resource
+    private ITestUserService testUserService;
+
+    @RequestMapping(value = "/getAllList", method = RequestMethod.GET)
+    public CommonResponse<List<TestUser>> getAllList() {
+        return new CommonResponse<>(0, "成功", testUserService.list());
+    }
 
 }

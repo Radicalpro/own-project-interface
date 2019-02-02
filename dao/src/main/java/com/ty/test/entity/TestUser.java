@@ -1,6 +1,8 @@
 package com.ty.test.entity;
 
-import com.ty.superclass.BaseEntity;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.ty.commonclass.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,6 +23,12 @@ public class TestUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
+     * id 主键
+     */
+    @TableId
+    private Integer id;
+
+    /**
      * 姓名
      */
     private String name;
@@ -34,5 +42,11 @@ public class TestUser extends BaseEntity {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 0:未删除 1:已删除
+     */
+    @TableLogic
+    private Integer isDelete;
 
 }

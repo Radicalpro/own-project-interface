@@ -11,7 +11,6 @@
     <modules>
         <module>web</module>
         <module>service</module>
-        <module>manager</module>
         <module>dao</module>
         <module>common</module>
     </modules>
