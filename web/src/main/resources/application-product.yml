@@ -2,7 +2,7 @@
 server:
   port: 9090
   servlet:
-    context-path: /ty
+    context-path: /com.ty
 
 #druid datasource configuration
 spring:
