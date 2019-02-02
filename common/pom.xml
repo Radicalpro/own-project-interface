@@ -9,20 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>manager</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.ty</groupId>
-            <artifactId>dao</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ty</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>common</artifactId>
 
 
 </project>
