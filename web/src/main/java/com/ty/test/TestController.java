@@ -21,6 +21,6 @@ public class TestController {
      */
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public String test1() {
-        return "ty";
+        return "com/ty";
     }
 }
