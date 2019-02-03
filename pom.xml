@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <lombok.version>1.16.16</lombok.version>
+        <lombok.version>1.18.2</lombok.version>
         <mybatis-spring-boot.version>1.3.1</mybatis-spring-boot.version>
         <fastjson.version>1.2.43</fastjson.version>
         <mybatisPlus.version>3.0.7.1</mybatisPlus.version>
@@ -129,6 +129,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/mapper/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
