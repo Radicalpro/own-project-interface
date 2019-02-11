@@ -14,3 +14,6 @@ spring:
     url: jdbc:mysql://localhost:3306/application?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&tinyInt1isBit=false
     username: root
     password: root
+  redis:
+    host: localhost
+    port: 6379

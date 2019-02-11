@@ -1,4 +1,4 @@
-package com.ty.commonclass;
+package com.ty.project;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

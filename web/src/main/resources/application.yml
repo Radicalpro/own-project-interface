@@ -50,7 +50,7 @@ spring:
       filter:
         stat:
           enabled: true
-          slow-sql-millis: 3000
+          slow-sql-millis: 2000
           merge-sql: false
           log-slow-sql: true
   jpa:
@@ -66,9 +66,17 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/com/ty/*/mapper/*Mapper.xml
   # 支持统配符 * 或者 ; 分割
-  typeEnumsPackage: com.ty.commonenums
+  typeEnumsPackage: com.ty.enums
   typeAliasesPackage: com.ty.*.entity
   global-config:
     db-config:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+shiro:
+  #配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
+  loginUrl: /login
+  #登录成功后要跳转的链接
+  successUrl: /index
+  unauthorizedUrl: /error
+  web:
+    enabled: false

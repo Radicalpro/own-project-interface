@@ -1,4 +1,4 @@
-package com.ty.commonclass;
+package com.ty.project.controller;
 
 /**
  * 公共Controller
