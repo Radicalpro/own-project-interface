@@ -1,8 +1,8 @@
 package com.ty.test;
 
 
-import com.ty.commonclass.BaseController;
-import com.ty.commonclass.CommonResponse;
+import com.ty.project.controller.BaseController;
+import com.ty.project.CommonResponse;
 import com.ty.test.entity.TestUser;
 import com.ty.test.service.ITestUserService;
 import org.springframework.web.bind.annotation.RequestMapping;

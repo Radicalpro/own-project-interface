@@ -1,4 +1,4 @@
-package com.ty.commonenums;
+package com.ty.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;

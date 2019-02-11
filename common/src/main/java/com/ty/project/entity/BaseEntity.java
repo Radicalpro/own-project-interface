@@ -1,4 +1,4 @@
-package com.ty.commonclass;
+package com.ty.project.entity;
 
 /**
  * 公共Entity
