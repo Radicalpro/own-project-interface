@@ -20,8 +20,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class TestUser extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
-
     /**
      * id 主键
      */
