@@ -1,7 +1,6 @@
 package com.ty.config.shiro;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -11,10 +10,10 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class ShiroConfig {
     /**
      * session超时时间
      */
-    private static final int SESSION_TIMEOUT_IN_SECONDS = 3600;
+    private static final int SESSION_TIMEOUT_IN_SECONDS = 120;
 
     /**
      * 定义filter
@@ -55,6 +54,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        shiroFilterFactoryBean.setLoginUrl("/unLogin");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unAuth");
         return shiroFilterFactoryBean;
     }
 
@@ -64,7 +65,7 @@ public class ShiroConfig {
      *
      * @return redis管理器
      */
-    @ConfigurationProperties(prefix = "redis.shiro")
+    @ConfigurationProperties(prefix = "spring.redis")
     private RedisManager redisManager() {
         return new RedisManager();
     }
@@ -79,6 +80,8 @@ public class ShiroConfig {
     public RedisCacheManager redisCacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
+        // 新版本的问题 用String的get方法解决
+        redisCacheManager.setPrincipalIdFieldName("bytes");
         return redisCacheManager;
     }
 
@@ -105,7 +108,8 @@ public class ShiroConfig {
     @Bean
     public MyShiroRealm myShiroRealm() {
         MyShiroRealm myShiroRealm = new MyShiroRealm();
-        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        //密码匹配器setCredentialsMatcher （需要时使用）
+        myShiroRealm.setCacheManager(redisCacheManager());
         return myShiroRealm;
     }
 
@@ -140,22 +144,6 @@ public class ShiroConfig {
     }
 
     /**
-     * 凭证匹配器
-     * (由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了）
-     *
-     * @return 哈希证书匹配器
-     */
-    @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        //散列算法:这里使用MD5算法;
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        //散列的次数，比如散列两次，相当于 md5(md5(""))
-        hashedCredentialsMatcher.setHashIterations(2);
-        return hashedCredentialsMatcher;
-    }
-
-    /**
      * 开启shiro aop注解支持.
      * 扫描(RequiresPermissions, RequiresRoles等注解)
      * 使用代理方式;所以需要开启代码支持;
@@ -168,5 +156,12 @@ public class ShiroConfig {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+    @Bean
+    public static DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        defaultAdvisorAutoProxyCreator.setUsePrefix(true);
+        return defaultAdvisorAutoProxyCreator;
     }
 }

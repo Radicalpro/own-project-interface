@@ -10,7 +10,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 自定义权限匹配和账号密码匹配
@@ -28,7 +30,9 @@ public class MyShiroRealm extends AuthorizingRealm {
         String userInfo = (String) principals.getPrimaryPrincipal();
         log.info(userInfo);
         authorizationInfo.setRoles(new HashSet<>());
-        authorizationInfo.setStringPermissions(new HashSet<>());
+        Set<String> rules = new HashSet<>();
+        rules.add("test:read:list");
+        authorizationInfo.setStringPermissions(rules);
         return authorizationInfo;
     }
 
@@ -47,8 +51,8 @@ public class MyShiroRealm extends AuthorizingRealm {
         //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
 
         // 密码匹配器直接返回true, 让Shiro跳过密码匹配
-        setCredentialsMatcher((authToken, authInfo) -> true);
-        return new SimpleAuthenticationInfo(username, token, getName());
+//        setCredentialsMatcher((authToken, authInfo) -> true);
+        return new SimpleAuthenticationInfo(username, "123456", null, getName());
     }
 
 }
