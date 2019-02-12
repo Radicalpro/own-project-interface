@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -18,7 +19,7 @@ import java.util.Scanner;
  * 执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
  *
  * @author tianyi
- * @date 2019-02-02
+ * @since  2019-02-02
  */
 public class CodeGenerator {
 
@@ -47,7 +48,8 @@ public class CodeGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("tianyi");
         gc.setOpen(false);
-//        gc.setEntityName("%Entity");
+        gc.setEntityName("%sEntity");
+        gc.setDateType(DateType.TIME_PACK);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -109,10 +111,10 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.ty.common.BaseEntity");
+        strategy.setSuperEntityClass("com.ty.project.entity.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setSuperControllerClass("com.ty.common.BaseController");
+        strategy.setSuperControllerClass("com.ty.project.controller.BaseController");
         strategy.setInclude(scanner("表名"));
 //        strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
