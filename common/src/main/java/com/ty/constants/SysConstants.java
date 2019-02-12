@@ -10,8 +10,10 @@ public class SysConstants {
 
     public static final Integer SUCCESS_CODE = 0;
 
-    public static final Integer FAIL_CODE = -1;
+    public static final Integer ERROR_CODE = -1;
 
     public static final String SUCCESS_STRING = "成功";
+
+    public static final String ERROR_STRING = "ERROR";
 
 }
