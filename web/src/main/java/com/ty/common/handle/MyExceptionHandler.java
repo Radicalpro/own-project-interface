@@ -6,6 +6,8 @@ import com.ty.project.response.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,26 @@ public class MyExceptionHandler {
     @ExceptionHandler(value = AuthorizationException.class)
     public CommonResponse<String> handleAuthorizationException() {
         return new CommonResponse<>(SysConstants.ERROR_CODE, "您没权限", null);
+    }
+
+    /**
+     * 验证错误异常
+     *
+     * @return 异常响应
+     */
+    @ExceptionHandler(value = IncorrectCredentialsException.class)
+    public CommonResponse<String> handleIncorrectCredentialsException() {
+        return new CommonResponse<>(SysConstants.ERROR_CODE, "用户名密码错误", null);
+    }
+
+    /**
+     * 账户状态异常
+     *
+     * @return 异常响应
+     */
+    @ExceptionHandler(value = LockedAccountException.class)
+    public CommonResponse<String> handleLockedAccountException() {
+        return new CommonResponse<>(SysConstants.ERROR_CODE, "账户状态错误", null);
     }
 
     /**

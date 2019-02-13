@@ -31,7 +31,7 @@ public class ShiroConfig {
     /**
      * session超时时间
      */
-    private static final int SESSION_TIMEOUT_IN_SECONDS = 120;
+    private static final int SESSION_TIMEOUT_IN_SECONDS = 1200;
 
     /**
      * 定义filter
@@ -52,7 +52,6 @@ public class ShiroConfig {
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");
-        filterChainDefinitionMap.put("/user/register", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         shiroFilterFactoryBean.setLoginUrl("/shiro/unLogin");

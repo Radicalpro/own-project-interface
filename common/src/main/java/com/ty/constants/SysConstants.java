@@ -8,6 +8,8 @@ package com.ty.constants;
  */
 public class SysConstants {
 
+    public static final String ROOT_USER = "system";
+
     public static final Integer SUCCESS_CODE = 0;
 
     public static final Integer ERROR_CODE = -1;
