@@ -1,15 +1,12 @@
 package com.ty.project.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.ty.project.entity.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 /**
  * 用户表
@@ -21,6 +18,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("my_user")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MyUserEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class MyUserEntity extends BaseEntity {
     /**
      * 0:正常 1:冻结
      */
-    private Boolean status;
+    private Integer status;
 
     /**
      * 备注
@@ -85,7 +85,7 @@ public class MyUserEntity extends BaseEntity {
      * 0: 删除 1: 未删除
      */
     @TableLogic
-    private Boolean isDelete;
+    private Integer isDelete;
 
     /**
      * 最后更新时间
@@ -93,4 +93,33 @@ public class MyUserEntity extends BaseEntity {
     private LocalDateTime lastUpdateTime;
 
 
+    /**
+     * 账户状态枚举
+     */
+    public enum StatusEnum {
+        /**
+         * 账户状态枚举
+         */
+        NORMAL(0, "正常"),
+        FROZEN(1, "冻结"),
+        ERROR(99, "状态错误");
+
+        @EnumValue
+        @Getter
+        private final int code;
+
+        @Getter
+        private final String des;
+
+        StatusEnum(int code, String des) {
+            this.code = code;
+            this.des = des;
+        }
+
+        public static StatusEnum valueOf(int code) {
+            return Arrays.stream(StatusEnum.values())
+                    .filter(a -> a.getCode() == code)
+                    .findFirst().orElse(StatusEnum.ERROR);
+        }
+    }
 }

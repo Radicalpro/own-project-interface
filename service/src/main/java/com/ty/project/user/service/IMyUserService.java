@@ -1,6 +1,7 @@
 package com.ty.project.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ty.project.user.converter.dto.UserRegisterDTO;
 import com.ty.project.user.entity.MyUserEntity;
 
 /**
@@ -13,4 +14,10 @@ import com.ty.project.user.entity.MyUserEntity;
  */
 public interface IMyUserService extends IService<MyUserEntity> {
 
+    /**
+     * 注册新用户
+     *
+     * @param userRegisterDTO 入参
+     */
+    void register(UserRegisterDTO userRegisterDTO);
 }
