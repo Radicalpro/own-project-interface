@@ -1,8 +1,8 @@
-package com.ty.project.user.service;
+package com.ty.project.usermanage.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ty.project.user.converter.dto.UserRegisterDTO;
-import com.ty.project.user.entity.MyUserEntity;
+import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.entity.MyUserEntity;
 
 /**
  * <p>

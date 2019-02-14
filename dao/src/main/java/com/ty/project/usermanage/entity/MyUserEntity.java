@@ -1,4 +1,4 @@
-package com.ty.project.user.entity;
+package com.ty.project.usermanage.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.ty.project.entity.BaseEntity;

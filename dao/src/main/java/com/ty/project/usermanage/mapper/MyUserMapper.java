@@ -1,7 +1,7 @@
-package com.ty.project.user.mapper;
+package com.ty.project.usermanage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ty.project.user.entity.MyUserEntity;
+import com.ty.project.usermanage.entity.MyUserEntity;
 
 /**
  * 用户表 Mapper 接口

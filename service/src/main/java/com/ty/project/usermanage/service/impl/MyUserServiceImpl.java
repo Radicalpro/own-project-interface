@@ -1,13 +1,13 @@
-package com.ty.project.user.service.impl;
+package com.ty.project.usermanage.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ty.constants.SysConstants;
 import com.ty.project.exception.MyException;
-import com.ty.project.user.converter.dto.UserRegisterDTO;
-import com.ty.project.user.entity.MyUserEntity;
-import com.ty.project.user.mapper.MyUserMapper;
-import com.ty.project.user.service.IMyUserService;
+import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.entity.MyUserEntity;
+import com.ty.project.usermanage.mapper.MyUserMapper;
+import com.ty.project.usermanage.service.IMyUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

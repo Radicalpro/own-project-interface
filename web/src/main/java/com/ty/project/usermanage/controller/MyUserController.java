@@ -1,12 +1,12 @@
-package com.ty.project.user.controller;
+package com.ty.project.usermanage.controller;
 
 
 import com.ty.constants.SysConstants;
 import com.ty.project.controller.BaseController;
 import com.ty.project.response.CommonResponse;
-import com.ty.project.user.converter.dto.UserLoginDTO;
-import com.ty.project.user.converter.dto.UserRegisterDTO;
-import com.ty.project.user.service.IMyUserService;
+import com.ty.project.usermanage.converter.dto.UserLoginDTO;
+import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.service.IMyUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

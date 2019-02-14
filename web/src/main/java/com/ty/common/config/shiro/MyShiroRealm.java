@@ -1,9 +1,8 @@
 package com.ty.common.config.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ty.project.user.entity.MyUserEntity;
-import com.ty.project.user.mapper.MyUserMapper;
-import com.ty.project.user.service.IMyUserService;
+import com.ty.project.usermanage.entity.MyUserEntity;
+import com.ty.project.usermanage.service.IMyUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
