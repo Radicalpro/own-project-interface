@@ -31,8 +31,8 @@ public class MyUserController extends BaseController {
     @Resource
     private IMyUserService myUserService;
 
-    @GetMapping(value = "/login")
-    public CommonResponse<String> login(@Valid UserLoginDTO userLoginDTO) {
+    @PostMapping(value = "/login")
+    public CommonResponse<String> login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(userLoginDTO.getUserName(), userLoginDTO.getPassword());
         subject.login(token);

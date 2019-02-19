@@ -53,6 +53,7 @@ spring:
           slow-sql-millis: 2000
           merge-sql: false
           log-slow-sql: true
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     open-in-view: true
     database: MYSQL
@@ -62,6 +63,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+  redis:
+    jedis:
+      pool:
+        max-active: 500
+        max-wait: 2000
+        max-idle: 100
+        min-idle: 0
+    timeout: 0
 
 mybatis-plus:
   mapper-locations: classpath:/com/ty/*/mapper/*Mapper.xml
