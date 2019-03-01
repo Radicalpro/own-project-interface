@@ -72,7 +72,7 @@ spring:
     timeout: 0
 
 mybatis-plus:
-  mapper-locations: classpath:/com/ty/*/mapper/*Mapper.xml
+  mapper-locations: classpath*:com/ty/project/**/mapper/*Mapper.xml
   # 支持统配符 * 或者 ; 分割
   typeEnumsPackage: com.ty.enums
   typeAliasesPackage: com.ty.*.entity

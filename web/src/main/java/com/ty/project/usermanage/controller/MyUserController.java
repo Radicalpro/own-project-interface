@@ -1,15 +1,22 @@
 package com.ty.project.usermanage.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ty.constants.SysConstants;
 import com.ty.project.controller.BaseController;
 import com.ty.project.response.CommonResponse;
 import com.ty.project.usermanage.converter.dto.UserLoginDTO;
+import com.ty.project.usermanage.converter.dto.UserPageListDTO;
 import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.converter.vo.UserEntityVo;
+import com.ty.project.usermanage.entity.MyUserEntity;
 import com.ty.project.usermanage.service.IMyUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +38,12 @@ public class MyUserController extends BaseController {
     @Resource
     private IMyUserService myUserService;
 
+    /**
+     * 登录
+     *
+     * @param userLoginDTO 登录dto
+     * @return 登录结果sessionId
+     */
     @PostMapping(value = "/login")
     public CommonResponse<String> login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
         Subject subject = SecurityUtils.getSubject();
@@ -52,4 +65,21 @@ public class MyUserController extends BaseController {
         myUserService.register(userRegisterDTO);
         return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, "");
     }
+
+    /**
+     * 注册新用户
+     *
+     * @param userPageListDTO 分页查询dto
+     * @param bindingResult   参数校验类
+     * @return CommonResponse
+     */
+    @GetMapping(value = "/pageList")
+    public CommonResponse<IPage> pageList(@Valid UserPageListDTO userPageListDTO, BindingResult bindingResult) {
+        checkValidResult(bindingResult);
+        Page<UserEntityVo> page = new Page<>(userPageListDTO.getCurrent(), userPageListDTO.getSize());
+        IPage<UserEntityVo> userEntityVoIPage = myUserService.selectPageVo(page, userPageListDTO);
+//        IPage<MyUserEntity> myUserEntityIPage = myUserService.page(page, new QueryWrapper<MyUserEntity>().lambda().eq(MyUserEntity::getUserName, userPageListDTO.getUserName()));
+        return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, userEntityVoIPage);
+    }
+
 }

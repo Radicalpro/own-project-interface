@@ -47,6 +47,11 @@ public class MyUserEntity extends BaseEntity {
     private String nickName;
 
     /**
+     * 角色id
+     */
+    private Integer roleId;
+
+    /**
      * 加密盐值
      */
     private String saltValue;

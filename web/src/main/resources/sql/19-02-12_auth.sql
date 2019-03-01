@@ -17,3 +17,30 @@ create table my_user
     primary key (id)
 )
   comment '用户表';
+
+## 增加角色关联字段
+alter table my_user
+  add role_id int default 0 not null comment '角色id' after salt_value;
+
+create table my_role
+(
+  id int(11) auto_increment comment '角色id主键',
+  role_name varchar(20) default '' not null comment '角色名',
+  role_rule varchar(500) default '' not null comment '角色权限',
+  status tinyint(2) default 0 not null comment '0:正常 1:冻结',
+  remark varchar(200) default '' not null comment '备注',
+  add_uid varchar(20) default '' not null comment '添加人',
+  add_time timestamp default CURRENT_TIMESTAMP not null comment '添加时间',
+  update_uid varchar(20) default '' not null comment '修改人',
+  update_time timestamp default CURRENT_TIMESTAMP not null comment '修改时间',
+  is_delete tinyint(2) default 0 not null comment '0: 删除 1: 未删除',
+  last_update_time timestamp default CURRENT_TIMESTAMP not null comment '最后更新时间',
+  constraint my_user_pk
+    primary key (id)
+)
+  comment '角色表';
+
+## 超级管理员角色
+INSERT INTO application.my_role (id, role_name, role_rule, status, remark, add_uid, add_time, update_uid, update_time, is_delete, last_update_time) VALUES (1, 'admin', '["all"]', 0, '', 'admin', '2019-03-01 07:59:24', '', '2019-03-01 07:59:24', 0, '2019-03-01 07:59:24');
+## 更新超级管理员的role_id
+UPDATE application.my_user SET user_name = 'admin', password = 'admin', nick_name = 'admin', salt_value = '', role_id = 1, status = 0, remark = '', add_uid = 'system', add_time = '2019-02-13 03:32:13', update_uid = '', update_time = '2019-02-13 03:32:13', is_delete = 0, last_update_time = '2019-02-13 03:32:13' WHERE id = 1;

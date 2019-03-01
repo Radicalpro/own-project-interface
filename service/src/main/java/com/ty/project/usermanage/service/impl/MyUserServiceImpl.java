@@ -1,10 +1,14 @@
 package com.ty.project.usermanage.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ty.constants.SysConstants;
 import com.ty.project.exception.MyException;
+import com.ty.project.usermanage.converter.dto.UserPageListDTO;
 import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.converter.vo.UserEntityVo;
 import com.ty.project.usermanage.entity.MyUserEntity;
 import com.ty.project.usermanage.mapper.MyUserMapper;
 import com.ty.project.usermanage.service.IMyUserService;
@@ -37,5 +41,10 @@ public class MyUserServiceImpl extends ServiceImpl<MyUserMapper, MyUserEntity> i
                 .password(userRegisterDTO.getPassword())
                 .nickName(userRegisterDTO.getUserName())
                 .addUid(ROOT_USER).build());
+    }
+
+    @Override
+    public IPage<UserEntityVo> selectPageVo(Page<UserEntityVo> page, UserPageListDTO userPageListDTO) {
+        return page.setRecords(this.myUserMapper.selectPageVo(page, userPageListDTO));
     }
 }

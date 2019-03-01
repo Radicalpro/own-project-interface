@@ -1,7 +1,11 @@
 package com.ty.project.usermanage.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ty.project.usermanage.converter.dto.UserPageListDTO;
 import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
+import com.ty.project.usermanage.converter.vo.UserEntityVo;
 import com.ty.project.usermanage.entity.MyUserEntity;
 
 /**
@@ -20,4 +24,13 @@ public interface IMyUserService extends IService<MyUserEntity> {
      * @param userRegisterDTO 入参
      */
     void register(UserRegisterDTO userRegisterDTO);
+
+    /**
+     * 分页多表查询
+     *
+     * @param page            分页类
+     * @param userPageListDTO 其他参数
+     * @return 数据集合
+     */
+    IPage<UserEntityVo> selectPageVo(Page<UserEntityVo> page, UserPageListDTO userPageListDTO);
 }
