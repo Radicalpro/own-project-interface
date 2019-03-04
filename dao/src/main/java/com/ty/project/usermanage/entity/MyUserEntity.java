@@ -72,7 +72,7 @@ public class MyUserEntity extends BaseEntity {
     private String addUid;
 
     /**
-     * 注册时间
+     * 添加时间
      */
     private LocalDateTime addTime;
 
@@ -96,7 +96,6 @@ public class MyUserEntity extends BaseEntity {
      * 最后更新时间
      */
     private LocalDateTime lastUpdateTime;
-
 
     /**
      * 账户状态枚举

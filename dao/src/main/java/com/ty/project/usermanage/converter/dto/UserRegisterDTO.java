@@ -3,6 +3,7 @@ package com.ty.project.usermanage.converter.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户注册dto
@@ -24,5 +25,11 @@ public class UserRegisterDTO {
      */
     @NotBlank(message = "密码不为空")
     private String password;
+
+    /**
+     * 角色id
+     */
+    @NotNull(message = "角色不为空")
+    private Integer roleId;
 
 }

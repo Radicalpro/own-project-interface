@@ -1,7 +1,6 @@
 package com.ty.project.usermanage.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ty.constants.SysConstants;
@@ -11,7 +10,6 @@ import com.ty.project.usermanage.converter.dto.UserLoginDTO;
 import com.ty.project.usermanage.converter.dto.UserPageListDTO;
 import com.ty.project.usermanage.converter.dto.UserRegisterDTO;
 import com.ty.project.usermanage.converter.vo.UserEntityVo;
-import com.ty.project.usermanage.entity.MyUserEntity;
 import com.ty.project.usermanage.service.IMyUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -60,25 +58,26 @@ public class MyUserController extends BaseController {
      * @return CommonResponse
      */
     @PostMapping(value = "/register")
+    @RequiresPermissions("user:add")
     public CommonResponse<String> regiseter(@Valid @RequestBody UserRegisterDTO userRegisterDTO, BindingResult bindingResult) {
         checkValidResult(bindingResult);
-        myUserService.register(userRegisterDTO);
+        myUserService.register(userRegisterDTO, getUserName());
         return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, "");
     }
 
     /**
-     * 注册新用户
+     * 用户列表
      *
      * @param userPageListDTO 分页查询dto
      * @param bindingResult   参数校验类
      * @return CommonResponse
      */
     @GetMapping(value = "/pageList")
+    @RequiresPermissions("user:read:list:page")
     public CommonResponse<IPage> pageList(@Valid UserPageListDTO userPageListDTO, BindingResult bindingResult) {
         checkValidResult(bindingResult);
         Page<UserEntityVo> page = new Page<>(userPageListDTO.getCurrent(), userPageListDTO.getSize());
         IPage<UserEntityVo> userEntityVoIPage = myUserService.selectPageVo(page, userPageListDTO);
-//        IPage<MyUserEntity> myUserEntityIPage = myUserService.page(page, new QueryWrapper<MyUserEntity>().lambda().eq(MyUserEntity::getUserName, userPageListDTO.getUserName()));
         return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, userEntityVoIPage);
     }
 

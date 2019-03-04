@@ -2,6 +2,8 @@ package com.ty.project.controller;
 
 import com.ty.constants.SysConstants;
 import com.ty.project.exception.MyException;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -25,6 +27,20 @@ public class BaseController {
                 errorMsg.append(error.getDefaultMessage());
             }
             throw new MyException(SysConstants.ERROR_CODE, errorMsg.toString());
+        }
+    }
+
+    /**
+     * 获取当前用户人信息
+     *
+     * @return userName
+     */
+    protected String getUserName(){
+        String userName = (String) SecurityUtils.getSubject().getPrincipal();
+        if(StringUtils.isNotEmpty(userName)){
+            return userName;
+        }else {
+            return "system";
         }
     }
 }

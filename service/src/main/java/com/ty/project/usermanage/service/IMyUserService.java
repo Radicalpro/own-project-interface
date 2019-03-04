@@ -22,8 +22,9 @@ public interface IMyUserService extends IService<MyUserEntity> {
      * 注册新用户
      *
      * @param userRegisterDTO 入参
+     * @param userName        用户名
      */
-    void register(UserRegisterDTO userRegisterDTO);
+    void register(UserRegisterDTO userRegisterDTO, String userName);
 
     /**
      * 分页多表查询

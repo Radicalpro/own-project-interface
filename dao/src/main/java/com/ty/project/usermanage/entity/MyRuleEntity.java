@@ -2,7 +2,6 @@ package com.ty.project.usermanage.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ty.project.entity.BaseEntity;
 import lombok.*;
@@ -12,43 +11,48 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 角色表
+ * 权限表
  * </p>
  *
  * @author tianyi
- * @since 2019-03-01
+ * @since 2019-03-04
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("my_role")
+@TableName("my_rule")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MyRoleEntity extends BaseEntity {
+public class MyRuleEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色id主键
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 角色名
+     * 权限名称
      */
-    private String roleName;
+    private String ruleName;
 
     /**
-     * 角色权限
+     * 权限地址
      */
-    private String roleRule;
+    private String ruleDetail;
 
     /**
-     * 备注
+     * 1: 菜单 2: 面包学 2: 权限
      */
-    private String remark;
+    private Integer ruleType;
+
+    /**
+     * 父id
+     */
+    private Integer pid;
 
     /**
      * 添加人
@@ -73,12 +77,12 @@ public class MyRoleEntity extends BaseEntity {
     /**
      * 0: 删除 1: 未删除
      */
-    @TableLogic
     private Integer isDelete;
 
     /**
      * 最后更新时间
      */
     private LocalDateTime lastUpdateTime;
+
 
 }

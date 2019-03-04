@@ -1,5 +1,7 @@
 package com.ty.project.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author tianyi
  * @since 2019-02-02
  */
+@Data
 public class BaseEntity implements Serializable {
 
 }
