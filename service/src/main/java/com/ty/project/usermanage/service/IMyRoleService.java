@@ -2,6 +2,7 @@ package com.ty.project.usermanage.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ty.project.usermanage.converter.dto.RoleAddDTO;
+import com.ty.project.usermanage.converter.dto.RoleRuleUpdateDTO;
 import com.ty.project.usermanage.entity.MyRoleEntity;
 
 /**
@@ -21,4 +22,11 @@ public interface IMyRoleService extends IService<MyRoleEntity> {
      * @param userName   操作人
      */
     void add(RoleAddDTO roleAddDTO, String userName);
+
+    /**
+     * 更新 角色权限
+     *
+     * @param roleRuleUpdateDTO 入参
+     */
+    void updateRoleRule(RoleRuleUpdateDTO roleRuleUpdateDTO);
 }

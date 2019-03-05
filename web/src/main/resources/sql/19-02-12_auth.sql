@@ -49,7 +49,7 @@ create table my_rule
   id int(11) auto_increment comment '主键id',
   rule_name varchar(20) default '' comment '权限名称',
   rule_detail varchar(20) default '' comment '权限地址',
-  rule_type tinyint(2) default 0 not null comment '1: 菜单 2: 面包学 2: 权限',
+  rule_type tinyint(2) default 0 not null comment '1: 菜单 2: 面包学 3: 权限',
   pid int(11) default 0 not null comment '父id',
   add_uid varchar(20) default '' not null comment '添加人',
   add_time timestamp default CURRENT_TIMESTAMP not null comment '添加时间',

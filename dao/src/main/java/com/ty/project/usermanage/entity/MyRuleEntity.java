@@ -45,7 +45,7 @@ public class MyRuleEntity extends BaseEntity {
     private String ruleDetail;
 
     /**
-     * 1: 菜单 2: 面包学 2: 权限
+     * 1: 菜单 2: 面包学 3: 权限
      */
     private Integer ruleType;
 

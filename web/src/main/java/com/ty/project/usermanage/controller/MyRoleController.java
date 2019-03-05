@@ -5,13 +5,11 @@ import com.ty.constants.SysConstants;
 import com.ty.project.controller.BaseController;
 import com.ty.project.response.CommonResponse;
 import com.ty.project.usermanage.converter.dto.RoleAddDTO;
+import com.ty.project.usermanage.converter.dto.RoleRuleUpdateDTO;
 import com.ty.project.usermanage.service.IMyRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -43,6 +41,21 @@ public class MyRoleController extends BaseController {
     public CommonResponse<String> add(@Valid @RequestBody RoleAddDTO roleAddDTO, BindingResult bindingResult) {
         checkValidResult(bindingResult);
         myRoleService.add(roleAddDTO, getUserName());
+        return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, "");
+    }
+
+    /**
+     * 更新权限
+     *
+     * @param roleRuleUpdateDTO 入参
+     * @param bindingResult     参数校验类
+     * @return CommonResponse
+     */
+    @RequestMapping(name = "/update/rule", method = RequestMethod.PATCH)
+    @RequiresPermissions("role:update:rule")
+    public CommonResponse<String> updateRole(@Valid @RequestBody RoleRuleUpdateDTO roleRuleUpdateDTO, BindingResult bindingResult) {
+        checkValidResult(bindingResult);
+        myRoleService.updateRoleRule(roleRuleUpdateDTO);
         return new CommonResponse<>(SysConstants.SUCCESS_CODE, SysConstants.SUCCESS_STRING, "");
     }
 
